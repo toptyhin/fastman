@@ -1,12 +1,12 @@
 import { useIvanNewYear } from './useIvanNewYear'
-// @ts-ignore - luxon types may not be available, but it's installed
-import { DateTime } from 'luxon'
+import { DateTime } from 'ts-luxon'
 import './App.css'
 
 function App() {
   const { year, result, error, isValid, calculate, handleYearChange } = useIvanNewYear()
 
   const printTime = () => {
+    if (!result) return '';
     try {
       const date = DateTime.fromFormat(result, 'yyyy-MM-dd HH:mm:ss', { zone: 'Europe/Moscow' });
       return date.toLocaleString(DateTime.DATETIME_FULL);
